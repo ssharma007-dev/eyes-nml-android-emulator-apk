@@ -1,5 +1,7 @@
 const { Eyes } = require('@applitools/eyes-webdriverio')
 
+//Note : Make sure APPLITOOLS_API_KEY is set as an environment variable
+
 exports.config = {
   runner: 'local',
   enableEyesLogs: true,
@@ -8,16 +10,17 @@ exports.config = {
   path: '/',  // root path for Appium
   specs: ['./test/specs/**/*.js'],
 
-  capabilities: [Eyes.setMobileCapabilities(
-    //Android
-    {
-      platformName: 'Android',
-      'appium:deviceName': 'Medium Phone API 36.1',
-      'appium:platformVersion': '16',
-      'appium:automationName': 'UiAutomator2',
-      'appium:app' : '<path_to_nml_instrumented_application>',
-      'appium:newCommandTimeout': 300,
-      'appium:adbExecTimeout': 60000,
+  capabilities: [
+    //Enables Applitools Native Mobile Library (NML) capabilities
+    Eyes.setMobileCapabilities( 
+        {
+      platformName  : 'Android',
+      'appium:deviceName'  : '<DEVICE_NAME>',// EXAMPLE : 'Medium Phone API 36.1',
+      'appium:platformVersion'  : '<DEVICE_PLATFORM_VERSION>', // EXAMPLE : 16
+      'appium:automationName'  : 'UiAutomator2',
+      'appium:app'  : '<PATH_TO_NML_INSTRUMENTED_APPLICATION>', // Path to the NML-instrumented application
+      'appium:newCommandTimeout'  : 300,
+      'appium:adbExecTimeout'  : 60000,
     }),
 
   ],
