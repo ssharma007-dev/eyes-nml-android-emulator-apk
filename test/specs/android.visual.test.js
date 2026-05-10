@@ -15,6 +15,7 @@ describe('Appium + WDIO + Applitools --> Android', () => {
 
         eyes = new Eyes();
         eyes.setApiKey(process.env.APPLITOOLS_API_KEY); 
+        eyes.setSendDom(true) //capture accessibility tree
         
         const logPath = path.join(logDir, 'android-eyes-nml-instrumented.log');
         eyes.setLogHandler(new FileLogHandler(true, logPath, false)); 
